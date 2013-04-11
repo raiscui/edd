@@ -90,9 +90,9 @@ class EFileUtils:
 
     @staticmethod
     def copyFile(fromDirectory, toDirectory, fileName):
-        """Copy files provided by FileData from source directory to destination directory"""
+        """Copy files provided by FileData from edd directory to destination directory"""
         try:
-        # Copy top level file from source to destination.
+        # Copy top level file from edd to destination.
             shutil.copy(os.path.join(fromDirectory, fileName),
                         os.path.join(toDirectory, fileName))
         except Exception, e:
@@ -103,9 +103,9 @@ class EFileUtils:
 
     @staticmethod
     def moveFile( fromDirectory, toDirectory, fileName, newFileName ):
-        """Move files provided by FileData from source directory to destination directory"""
+        """Move files provided by FileData from edd directory to destination directory"""
         try:
-        # Move top level file from source to destination.
+        # Move top level file from edd to destination.
             shutil.move(os.path.join(fromDirectory, fileName),
                         os.path.join(toDirectory, newFileName))
 
