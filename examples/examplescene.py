@@ -49,7 +49,7 @@ if __name__ == "__main__":
     theView = EView()
     theView.Scene = ExampleScene(theView)
 
-    #theView.Scene.createConnected()
+    theView.Scene.createConnected()
 
     kResourceTabs.addTab(theView, "Workspace")
     kWorkspaceSplitter.addWidget(kResourceTabs)

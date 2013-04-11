@@ -1,9 +1,10 @@
 import sys
 import xml.dom.minidom as xml
 
+
 class ESettings(object):
 
-    EDD_PLUGIN_PATH = 'D:/Devel/Python/edd_maya/python/plugins'
+    EDD_PLUGIN_PATH = 'D:/Devel/Python/edd/plugins'
 
     def __init__(self):
         sys.path.append(ESettings.EDD_PLUGIN_PATH)
@@ -13,9 +14,10 @@ class ESettings(object):
 
     def __isValid(self, root, tag):
         try:
-            if len(root.getElementsByTagName( tag )) > 1: raise ValueError('Duplicated Items( <%s> ) in config file "%s"' % ( tag, self.__settingsFile ))
+            if len(root.getElementsByTagName( tag )) > 1:
+                raise ValueError('Duplicated Items( <%s> ) in config file "%s"' % (tag, self.__settingsFile))
 
-            return root.getElementsByTagName( tag )
+            return root.getElementsByTagName(tag)
 
         except Exception, err:
             raise err
