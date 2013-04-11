@@ -3,7 +3,7 @@ import xml.dom.minidom as xml
 
 class ESettings(object):
 
-    EDD_PLUGIN_PATH = 'D:/Devel/Python/edd/plugins'
+    EDD_PLUGIN_PATH = 'D:/Devel/Python/edd_maya/python/plugins'
 
     def __init__(self):
         sys.path.append(ESettings.EDD_PLUGIN_PATH)

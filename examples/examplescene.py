@@ -1,6 +1,6 @@
 import sys
 from PyQt4.QtCore import Qt
-from PyQt4.QtGui import QApplication, QMainWindow, QSplitter, QTabWidget
+from PyQt4.QtGui import QApplication, QMainWindow, QSplitter, QTabWidget, QTextEdit
 
 from edd.gui.escene import EScene
 from edd.gui.eview import EView
@@ -49,10 +49,15 @@ if __name__ == "__main__":
     theView = EView()
     theView.Scene = ExampleScene(theView)
 
-    theView.Scene.createConnected()
+    #theView.Scene.createConnected()
 
     kResourceTabs.addTab(theView, "Workspace")
     kWorkspaceSplitter.addWidget(kResourceTabs)
+
+    console = QTextEdit()
+
+
+    kWorkspaceSplitter.addWidget(console)
 
     window = QMainWindow()
     window.setWindowTitle('EDD - Standalone')
