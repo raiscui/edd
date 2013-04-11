@@ -26,8 +26,8 @@ class ExampleScene(EScene):
 
     def createConnected(self):
 
-        nodeOne = MyNode("Dummy1")
-        nodeTwo = MyNode("Dummy2")
+        nodeOne = MyNode("MyNode1")
+        nodeTwo = MyNode("MyNode2")
 
         self.cwd().addNode(nodeOne)
         self.cwd().addNode(nodeTwo)
