@@ -29,6 +29,7 @@ class EConnection(EObject):
 
         if message.match(EAttribute.kMessageAttributeSet):
             if message.sender().Type.match(EAttribute.kTypeOutput):
+
                 #print "Data set on: <%s.%s>" % (message.sender().Handle.Name, message.sender().Name)
                 #print self.__headAttr.Handle.getAttributeById(self.__headAttr.Id).Data
                 #self.__tailAttr.Data = self.__headAttr.Handle.getAttributeById(self.__headAttr.Id).Data
