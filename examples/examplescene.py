@@ -40,7 +40,7 @@ class FileNode(ENodeHandle):
     def __init__(self, name):
         ENodeHandle.__init__(self, name)
 
-        self.__inputAttr = Image.open("C:\Users\Portable\Desktop\screen_11.png")
+        self.__inputAttr = Image.open("C:\Users\Portable\Desktop\env.jpg")
         self.__outputAttr = self.addOutputAttribute("Output")
 
     def compute(self, plug, data=None):
