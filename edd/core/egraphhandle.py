@@ -22,6 +22,9 @@ class EConnection(EObject):
 
         self.__tailAttr.Data = self.__headAttr.Data
 
+    def update(self):
+        self.__headAttr.Handle.compute(self.__headAttr)
+
     def __messageFilter(self, message):
 
         if message.match(EAttribute.kMessageAttributeSet):
@@ -187,6 +190,8 @@ class EGraphHandle(EObject):
 
             connection = EConnection(self.__attributes[attributeOne], self.__attributes[attributeTwo])
             self.__connections[connection.Id] = connection
+
+            connection.update()
 
             self.Message.emit(self.kMessageConnectionMade.setData([attributeOne, attributeTwo, connection.Id]))
             return True

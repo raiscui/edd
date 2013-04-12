@@ -13,8 +13,12 @@ class MyNode(ENodeHandle):
     def __init__(self, name):
         ENodeHandle.__init__(self, name)
 
-        self.addInputAttribute("Input")
-        self.addOutputAttribute("Output")
+        self.__inputAttr = self.addInputAttribute("Input")
+        self.__outputAttr = self.addOutputAttribute("Output")
+
+    def compute(self, plug, data=None):
+
+        print "%s computed..." % self.Name
 
 
 class ExampleScene(EScene):
@@ -28,9 +32,11 @@ class ExampleScene(EScene):
 
         nodeOne = MyNode("MyNode1")
         nodeTwo = MyNode("MyNode2")
+        nodeDummy = MyNode("MyDummy")
 
         self.cwd().addNode(nodeOne)
         self.cwd().addNode(nodeTwo)
+        self.cwd().addNode(nodeDummy)
 
         self.cwd().connectAttributes(nodeOne.getAttributeByName('Output')[0], nodeTwo.getAttributeByName('Input')[0])
 
@@ -54,10 +60,9 @@ if __name__ == "__main__":
     kResourceTabs.addTab(theView, "Workspace")
     kWorkspaceSplitter.addWidget(kResourceTabs)
 
-    console = QTextEdit()
+    #console = QTextEdit()
 
-
-    kWorkspaceSplitter.addWidget(console)
+    #kWorkspaceSplitter.addWidget(console)
 
     window = QMainWindow()
     window.setWindowTitle('EDD - Standalone')

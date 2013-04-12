@@ -5,6 +5,7 @@ class EAttribute(EObject):
 
     kTypeInput = EObject()
     kTypeOutput = EObject()
+    kTypeProperty = EObject()
 
     kMessageAttributeSet = EObject()
     kMessageAttributeGet = EObject()
