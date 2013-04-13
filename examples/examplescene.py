@@ -1,6 +1,6 @@
 import sys
-from PyQt4.QtCore import Qt, QByteArray
-from PyQt4.QtGui import QApplication, QMainWindow, QSplitter, QTabWidget, QTextEdit, QLabel, QImage, QPixmap
+from PyQt4.QtCore import Qt
+from PyQt4.QtGui import QApplication, QMainWindow, QSplitter, QTabWidget, QLabel, QImage, QPixmap
 
 from edd.gui.escene import EScene
 from edd.gui.eview import EView
@@ -8,7 +8,7 @@ from edd.gui.eview import EView
 from edd.core.enodehandle import ENodeHandle
 
 
-from PIL import Image, ImageQt
+from PIL import Image
 import numpy
 
 
@@ -20,7 +20,6 @@ class ViewNode(ENodeHandle):
         self.IsStatic = True
 
         self.__inputAttr = self.addInputAttribute("Input")
-        self.__outputAttr = self.addOutputAttribute("Output")
         self.__control = None
 
     def setControl(self, control):
