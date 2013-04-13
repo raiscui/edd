@@ -17,13 +17,14 @@ class EConnection(EObject):
             self.__tailAttr = head
             self.__headAttr = tail
 
-        self.__headAttr.Message.connect(self.__messageFilter)
-        self.__tailAttr.Message.connect(self.__messageFilter)
+        #self.__headAttr.Message.connect(self.__messageFilter)
+        #self.__tailAttr.Message.connect(self.__messageFilter)
 
         self.__tailAttr.Data = self.__headAttr.Data
 
     def update(self):
-        self.__headAttr.Handle.compute(self.__headAttr)
+        #self.__headAttr.Handle.compute()
+        pass
 
     def __messageFilter(self, message):
 
@@ -37,7 +38,7 @@ class EConnection(EObject):
 
         if message.match(EAttribute.kMessageAttributeGet):
             if message.sender().Type.match(EAttribute.kTypeInput):
-                result = self.__headAttr.Handle.compute(self.__headAttr)
+                result = self.__headAttr.Handle.compute()
                 #print result
 
                 if not result:

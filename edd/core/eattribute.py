@@ -76,7 +76,7 @@ class EAttribute(EObject):
 
     @property
     def isArray(self):
-        return
+        return None
 
     @isArray.setter
     def isArray(self, state):

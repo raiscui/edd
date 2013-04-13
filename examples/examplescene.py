@@ -17,6 +17,8 @@ class ViewNode(ENodeHandle):
     def __init__(self, name):
         ENodeHandle.__init__(self, name)
 
+        self.IsStatic = True
+
         self.__inputAttr = self.addInputAttribute("Input")
         self.__outputAttr = self.addOutputAttribute("Output")
         self.__control = None
@@ -24,15 +26,17 @@ class ViewNode(ENodeHandle):
     def setControl(self, control):
         self.__control = control
 
-    def compute(self, plug, data=None):
+    def compute(self):
 
         im = Image.fromarray(self.__inputAttr.Data)
-        self.__data = data or im.convert("RGBA").tostring("raw", "RGBA")
+        self.__data = None or im.convert("RGBA").tostring("raw", "RGBA")
 
         image = QImage(self.__data, im.size[0], im.size[1], QImage.Format_ARGB32)
         pix = QPixmap.fromImage(image)
 
         self.__control.setPixmap(pix)
+
+        print "%s Computed" % self.Name
 
 
 class FileNode(ENodeHandle):
@@ -43,10 +47,10 @@ class FileNode(ENodeHandle):
         self.__inputAttr = Image.open("C:\Users\Portable\Desktop\env.jpg")
         self.__outputAttr = self.addOutputAttribute("Output")
 
-    def compute(self, plug, data=None):
+    def compute(self):
 
         self.__outputAttr.Data = numpy.array(self.__inputAttr)
-        print "%s computed..." % self.Name
+        print "%s Computed..." % self.Name
 
 
 class BlurNode(ENodeHandle):
@@ -58,7 +62,7 @@ class BlurNode(ENodeHandle):
         self.__inputAttr = self.addInputAttribute("Input")
         self.__outputAttr = self.addOutputAttribute("Output")
 
-    def compute(self, plug, data=None):
+    def compute(self):
 
         if self.__inputAttr.Data is None:
             return
@@ -74,6 +78,8 @@ class BlurNode(ENodeHandle):
 
         self.__outputAttr.Data = numpy.dstack((r, g, b))
 
+        print "%s Computed" % self.Name
+
 
 class ExampleScene(EScene):
 
@@ -86,17 +92,14 @@ class ExampleScene(EScene):
 
         fileNode = FileNode("File")
         blurNode1 = BlurNode("Blur1")
-        blurNode2 = BlurNode("Blur2")
+        #blurNode2 = BlurNode("Blur2")
         viewNode = ViewNode("Viewer")
         viewNode.setControl(self.__control)
 
-        dummyNode = BlurNode("Dummy")
-
         self.cwd().addNode(fileNode)
         self.cwd().addNode(blurNode1)
-        self.cwd().addNode(blurNode2)
+        #self.cwd().addNode(blurNode2)
         self.cwd().addNode(viewNode)
-        self.cwd().addNode(dummyNode)
 
         #self.cwd().connectAttributes(nodeOne.getAttributeByName('Output')[0], nodeTwo.getAttributeByName('Input')[0])
 

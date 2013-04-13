@@ -11,16 +11,25 @@ class ENodeHandle(EObject):
     def __init__(self, name=None):
         EObject.__init__(self)
         self.Name = name
+        self.IsStatic = False
 
         self.__attributes = {}
         self.__connections = {}
         return
 
     def __messageFilter(self, message):
-        #print message.sender().Handle.Name,  message.sender().Name
-        pass
 
-    def compute(self, plug, data=None):
+        if message.match(EAttribute.kMessageAttributeSet) and self.IsStatic:
+            #print message.sender().Handle.Name,  message.sender().Name
+            self.compute()
+            return
+
+        if message.match(EAttribute.kMessageAttributeGet):
+            if message.sender().Type.match(EAttribute.kTypeOutput):
+                print "%s Request Data From: " % self.Name, message.sender().Handle.Name,  message.sender().Name
+                self.compute()
+
+    def compute(self):
         return None
 
     def hasAttribute(self, eAttribute):
